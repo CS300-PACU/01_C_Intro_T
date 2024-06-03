@@ -27,7 +27,7 @@ ENSCRIPT_FLAGS=-C -T 2 -p - -M Letter -Ec --color -fCourier8
 # the list continues on the next line.  WARNING: There must be no characters
 # other than the newline after the \.  A blank space after the \ gives errors. 
 
-TARGETS=bin/calc
+TARGETS=bin/calc bin/calcFile
 
 all: bin ${TARGETS}
 
@@ -40,11 +40,20 @@ bin/calc: bin/calc.o
 bin/calc.o: src/calc.c
 	${CC} ${CFLAGS} -o bin/calc.o -c src/calc.c
 
+bin/calcFile: bin/calcFile.o 
+	${CC} ${CFLAGS} -o bin/calcFile bin/calcFile.o 
+	
+bin/calcFile.o: src/calcFile.c
+	${CC} ${CFLAGS} -o bin/calcFile.o -c src/calcFile.c
+
 clean:
 	rm -rf bin/*.o ${TARGETS} bin/*.pdf
 
 printAll:
 	enscript ${ENSCRIPT_FLAGS} src/calc.c  | ps2pdf - bin/calc.pdf
+
+printCalcFile:
+	enscript ${ENSCRIPT_FLAGS} src/calcFile.c  | ps2pdf - bin/calcFile.pdf
 
 valgrind: bin/calc
 	valgrind ${VALGRIND_FLAGS} bin/calc
