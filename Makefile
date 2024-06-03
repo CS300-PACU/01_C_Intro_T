@@ -27,37 +27,27 @@ ENSCRIPT_FLAGS=-C -T 2 -p - -M Letter -Ec --color -fCourier8
 # the list continues on the next line.  WARNING: There must be no characters
 # other than the newline after the \.  A blank space after the \ gives errors. 
 
-TARGETS=bin/main
+TARGETS=bin/calc
 
 all: bin ${TARGETS}
 
 bin:
 	mkdir -p bin
 
-# Automatically generate rules
-# https://www.gnu.org/software/make/manual/html_node/Automatic-Variables.html
-bin/%: bin/%.o
-	${CC} -o $@ ${CFLAGS} $^
-
-bin/%.o: src/%.c
-	${CC} -c -o $@ ${CFLAGS} $<
-
-
-# Custom rules
-# bin/helloworld: bin/helloworld.o 
-# 	${CC} ${CFLAGS} -o bin/functionPointers bin/functionPointers.o 
+bin/calc: bin/calc.o 
+	${CC} ${CFLAGS} -o bin/calc bin/calc.o 
 	
-# bin/helloworld.o: src/helloworld.c
-# 	${CC} ${CFLAGS} -o bin/helloworld.o -c src/helloworld.c
+bin/calc.o: src/calc.c
+	${CC} ${CFLAGS} -o bin/calc.o -c src/calc.c
 
 clean:
 	rm -rf bin/*.o ${TARGETS} bin/*.pdf
 
 printAll:
-	enscript ${ENSCRIPT_FLAGS} src/main.c  | ps2pdf - bin/main.pdf
+	enscript ${ENSCRIPT_FLAGS} src/calc.c  | ps2pdf - bin/calc.pdf
 
-valgrind: bin/main
-	valgrind ${VALGRIND_FLAGS} bin/main
+valgrind: bin/calc
+	valgrind ${VALGRIND_FLAGS} bin/calc
 
 # https://www.gnu.org/software/make/manual/html_node/Chained-Rules.html
 # https://www.gnu.org/software/make/manual/html_node/Special-Targets.html

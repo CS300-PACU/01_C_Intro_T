@@ -1,5 +1,5 @@
 /****************************************************************************
- File name:  	main.c
+ File name:  	calc.c
  Author:
  Date:
  Class:
@@ -12,12 +12,12 @@
  /****************************************************************************
   Function: 	 	main
 
-  Description: hello world!
+  Description: 	hello world!
 
-  Parameters:	argc - the number of command line arguments
-               argv - the actual command line arguments
+  Parameters:		argc - the number of command line arguments
+              	argv - the actual command line arguments
 
-  Returned:	 	EXIT_SUCCESS
+  Returned:	 		EXIT_SUCCESS
   ****************************************************************************/
 int main (int argc, char* argv[]) {
   printf ("HELLO CS STUDENT!\n\n");
