@@ -5,11 +5,23 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "(lldb) Launch", // Change name
+      "name": "(lldb) calc Launch", // Change name
       "type": "lldb",
       "request": "launch",
-      "program": "${workspaceFolder}/bin/main", // THIS IS IMPORTANT
+      "program": "${workspaceFolder}/bin/calc", // THIS IS IMPORTANT
       "args": [], // add comma separated list of args here.
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "runMake", // THIS IS IMPORTANT
+      // "initCommands": [ // add commands to send to the debugger (LLDB)
+      //   "settings set target.process.follow-fork-mode child"
+      // ],
+    },
+    {
+      "name": "(lldb) calcFile Launch", // Change name
+      "type": "lldb",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/calcFile", // THIS IS IMPORTANT
+      "args": ["data/in.txt", "data/out.txt"], // add comma separated list of args here.
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "runMake", // THIS IS IMPORTANT
       // "initCommands": [ // add commands to send to the debugger (LLDB)
